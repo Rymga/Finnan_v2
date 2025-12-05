@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Finan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <div class="logo-section">
+      <ion-icon name="cash-outline" class="app-logo"></ion-icon>
+      <h1>Finan</h1>
+      <p class="subtitle">Gestiona tus finanzas</p>
+    </div>
+
+    <form class="login-form">
+
+      <!-- Campo de correo -->
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input 
+          [(ngModel)]="mdl_email" 
+          type="email" 
+          placeholder="admin@gmail.com"
+          name="email">
+        </ion-input>
+      </ion-item>
+
+      <!-- Campo de contraseña -->
+      <ion-item lines="full">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input 
+          [(ngModel)]="mdl_password" 
+          type="password" 
+          placeholder="Ingresa tu contraseña"
+          name="password">
+        </ion-input>
+      </ion-item>
+
+      <!-- Botón de inicio de sesión -->    
+      <ion-button 
+        (click)="login()" 
+        expand="block" 
+        shape="round" 
+        class="login-button">
+        Iniciar Sesión
+      </ion-button>
+
+      <div class="divider">
+        <span></span>
+      </div>
+
+      <ion-button 
+        (click)="goToRegister()"
+        expand="block" 
+        fill="outline" 
+        shape="round" 
+        class="register-button">
+        Crear cuenta nueva
+      </ion-button>
+
+      <!-- Enlace de "Olvidé mi contraseña" -->
+      <div class="forgot-password">
+        <ion-text color="medium">
+          <p (click)="goToForgotPassword()">¿Olvidaste tu contraseña?</p>
+        </ion-text>
+      </div>
+    </form>
+  </div>
+</ion-content>

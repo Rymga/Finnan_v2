@@ -1,0 +1,93 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Finan</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="home-container">
+    
+    <!-- Saludo y fecha -->
+    <div class="greeting-section">
+      <h2>Hola, {{username}}</h2>
+      <p class="date">{{mesActual}}</p>
+    </div>
+
+    <!-- Balance actual --> 
+    <ion-card class="balance-card">
+      <ion-card-content>
+        <p class="balance-label">Balance Disponible</p>
+        <h1 class="balance-amount">${{balance | number:'1.0-0'}}</h1>
+        <div class="balance-details">
+          <div class="detail-item">
+            <ion-icon name="arrow-up-circle" color="success"></ion-icon>
+            <div>
+              <p class="detail-label">Ingresos</p>
+              <p class="detail-value">${{ingresos | number:'1.0-0'}}</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <ion-icon name="arrow-down-circle" color="danger"></ion-icon>
+            <div>
+              <p class="detail-label">Gastos</p>
+              <p class="detail-value">${{gastos | number:'1.0-0'}}</p>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Mensaje motivacional -->
+    <ion-card class="motivation-card" *ngIf="porcentajeGastado > 0">
+      <ion-card-content>
+        <ion-icon name="happy-outline" [color]="porcentajeGastado < 50 ? 'success' : 'warning'"></ion-icon>
+        <p>{{mensajeMotivacional}}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Gráfico de categorías -->
+    <ion-card class="chart-card" *ngIf="gastosPorCategoria.length > 0">
+      <ion-card-header>
+        <ion-card-title>Gastos por Categoría</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Gráfico de barras horizontal -->
+        <div class="chart-bars">
+          <div class="bar-item" *ngFor="let cat of gastosPorCategoria">
+            <div class="bar-info">
+              <ion-icon [name]="cat.icono" [style.color]="getCategoryColor(cat.color)"></ion-icon>
+              <span class="bar-label">{{cat.nombre}}</span>
+              <span class="bar-value">${{cat.total | number:'1.0-0'}}</span>
+            </div>
+            <div class="bar-container">
+              <div 
+                class="bar-fill" 
+                [style.width.%]="cat.porcentaje"
+                [style.background]="getCategoryColor(cat.color)">
+              </div>
+            </div>
+            <span class="bar-percentage">{{cat.porcentaje}}%</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+
+    <!-- Botones de acción rápida -->
+    <div class="quick-actions">
+      <ion-button routerLink="/transaction" routerLinkActive="active" expand="block" shape="round">
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+        Agregar Transacción
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

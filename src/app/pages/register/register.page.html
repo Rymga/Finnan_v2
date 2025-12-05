@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="register-container">
+    <div class="logo-section">
+      <ion-icon name="person-add-outline" class="app-logo"></ion-icon>
+      <h1>Crear Cuenta</h1>
+      <p class="subtitle">Únete a Finan</p>
+    </div>
+
+    <form class="register-form">
+      <!-- Campo de nombre -->
+      <ion-item lines="full">
+        <ion-label position="floating">Nombre completo</ion-label>
+        <ion-input 
+          [(ngModel)]="mdl_nombre"
+          type="text" 
+          placeholder="Tu nombre"
+          name="nombre">
+        </ion-input>
+      </ion-item>
+
+      <!-- Campo de correo electrónico -->
+      <ion-item lines="full">
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input 
+          [(ngModel)]="mdl_email"
+          type="email" 
+          placeholder="usuario@ejemplo.com"
+          name="email">
+        </ion-input>
+      </ion-item>
+
+      <!-- Campo de contraseña -->
+      <ion-item lines="full">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input 
+          [(ngModel)]="mdl_password"
+          type="password" 
+          placeholder="Mínimo 6 caracteres"
+          name="password">
+        </ion-input>
+      </ion-item>
+
+      <!-- Campo de confirmar contraseña -->
+      <ion-item lines="full">
+        <ion-label position="floating">Confirmar contraseña</ion-label>
+        <ion-input 
+          [(ngModel)]="mdl_confirm_password"
+          type="password" 
+          placeholder="Repite tu contraseña"
+          name="confirmPassword">
+        </ion-input>
+      </ion-item>
+
+      <!-- Botón de registro -->    
+      <ion-button 
+        (click)="register()"
+        expand="block" 
+        shape="round" 
+        class="register-button">
+        Registrarse
+      </ion-button>
+
+      <!-- Enlace de "Ya tengo cuenta" -->
+      <div class="login-link">
+        <ion-text color="medium">
+          <p>¿Ya tienes cuenta? <span (click)="goToLogin()" class="link-text">Inicia sesión</span></p>
+        </ion-text>
+      </div>
+    </form>
+  </div>
+</ion-content>

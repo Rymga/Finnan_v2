@@ -1,0 +1,94 @@
+/* Variables de colores personalizadas */
+:root {
+  --finan-primary: #3880ff;
+  --finan-success: #2dd36f;
+  --finan-danger: #eb445a;
+  --finan-warning: #ffc409;
+  --finan-dark: #222428;
+  --finan-medium: #92949c;
+  --finan-light: #f4f5f8;
+}
+
+/* Safe Area - Evita choques con barras del teléfono */
+ion-content {
+  --padding-bottom: max(env(safe-area-inset-bottom), 20px);
+}
+
+/* Botones flotantes */
+ion-fab {
+  margin-bottom: calc(env(safe-area-inset-bottom) + 20px) !important;
+}
+
+/* Footer y menús inferiores */
+ion-footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Menú lateral - elemento inferior */
+ion-menu ion-content ion-list:last-child {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 20px) !important;
+  margin-bottom: 0 !important;
+}
+
+/* Formularios - último botón */
+.ion-padding form ion-button:last-of-type {
+  margin-bottom: 20px;
+}
+
+/* Listas que llegan al final */
+ion-list {
+  padding-bottom: 20px;
+}
+
+/* Contenedores principales */
+.login-container,
+.register-container,
+.home-container,
+.transaction-container,
+.history-container,
+.forgot-password-container,
+.profile-container,
+.statistics-container {
+  padding-bottom: 40px;
+}
+
+/* Cards al final */
+ion-card:last-child {
+  margin-bottom: 30px;
+}
+
+/* Acciones rápidas y botones finales */
+.quick-actions {
+  margin-bottom: 40px;
+}
+
+/* Animaciones suaves globales */
+ion-button {
+  transition: transform 0.2s ease;
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+ion-card {
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Items con efecto hover */
+ion-item {
+  --transition: background-color 0.2s ease;
+}
+
+/* Segments con mejor apariencia */
+ion-segment {
+  margin: 16px 0;
+}
+
+ion-segment-button {
+  --indicator-height: 3px;
+}

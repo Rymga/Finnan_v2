@@ -1,0 +1,77 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.error-content {
+  max-width: 400px;
+  padding: 20px;
+}
+
+.error-icon {
+  font-size: 120px;
+  color: var(--ion-color-danger);
+  margin-bottom: 20px;
+  animation: bounce 1s ease infinite;
+}
+
+.error-code {
+  font-size: 80px;
+  font-weight: bold;
+  color: var(--ion-color-primary);
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-content h2 {
+  font-size: 24px;
+  margin: 20px 0 10px 0;
+  color: var(--ion-color-dark);
+  font-weight: 600;
+}
+
+.error-content p {
+  color: var(--ion-color-medium);
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.back-button {
+  margin-bottom: 10px;
+  --border-radius: 25px;
+  height: 50px;
+  font-weight: 600;
+}
+
+.login-button {
+  margin-top: 10px;
+  --border-radius: 25px;
+  height: 50px;
+  font-weight: 600;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

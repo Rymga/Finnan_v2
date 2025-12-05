@@ -1,0 +1,115 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{modoEdicion ? 'Editar Transacción' : 'Nueva Transacción'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="transaction-container">
+
+    <!-- Selector de tipo -->
+    <ion-segment [(ngModel)]="tipo" name="tipo" (ionChange)="ionChange()">
+      <ion-segment-button value="gasto">
+        <ion-label>Gasto</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="ingreso">
+        <ion-label>Ingreso</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <form class="transaction-form">
+
+      <!-- Campo de monto -->
+      <ion-item lines="full">
+        <ion-label position="floating">Monto</ion-label>
+        <ion-input 
+          [(ngModel)]="monto"
+          type="number" 
+          placeholder="0"
+          name="monto">
+        </ion-input>
+      </ion-item>
+
+      <!-- Campo de categoría -->
+      <ion-item lines="full">
+        <ion-label position="floating">Categoría</ion-label>
+        <ion-select 
+          [(ngModel)]="categoriaId"
+          placeholder="Selecciona una categoría"
+          name="categoria">
+          <ion-select-option 
+            *ngFor="let cat of categoriasFiltradas" 
+            [value]="cat.id">
+            {{cat.nombre}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Campo de descripción -->
+      <ion-item lines="full">
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input 
+          [(ngModel)]="descripcion"
+          type="text" 
+          placeholder="Ej: Compra en supermercado"
+          name="descripcion">
+        </ion-input>
+      </ion-item>
+
+      <!-- Campo de fecha -->
+      <ion-item lines="full">
+        <ion-label position="floating">Fecha</ion-label>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime 
+              id="datetime"
+              [(ngModel)]="fecha"
+              name="fecha"
+              presentation="date">
+            </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <!-- Campo de método de pago (opcional) -->
+      <ion-item lines="full">
+        <ion-label position="floating">Método de pago</ion-label>
+        <ion-select 
+          [(ngModel)]="metodoPago"
+          placeholder="Selecciona método"
+          name="metodoPago">
+          <ion-select-option value="Efectivo">Efectivo</ion-select-option>
+          <ion-select-option value="Tarjeta">Tarjeta</ion-select-option>
+          <ion-select-option value="Transferencia">Transferencia</ion-select-option>
+          <ion-select-option value="Otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Botón de guardar -->
+      <ion-button 
+        (click)="guardarTransaccion()"
+        expand="block" 
+        shape="round" 
+        class="save-button">
+        <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+        {{modoEdicion ? 'Actualizar' : 'Guardar'}} Transacción
+      </ion-button>
+
+      <!-- Botón de cancelar si está en modo edición -->
+      <ion-button 
+        *ngIf="modoEdicion"
+        (click)="cancelarEdicion()"
+        expand="block" 
+        fill="outline"
+        shape="round" 
+        class="cancel-button">
+        Cancelar
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

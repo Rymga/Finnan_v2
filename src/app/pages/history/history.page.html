@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Historial</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="history-container">
+
+    <!-- Filtros opcionales -->
+    <ion-segment [(ngModel)]="filtroTipo" name="filtroTipo" (ionChange)="filtrarTransacciones()">
+      <ion-segment-button value="todos">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="gasto">
+        <ion-label>Gastos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="ingreso">
+        <ion-label>Ingresos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Lista de transacciones -->
+    <ion-list *ngIf="transaccionesFiltradas.length > 0">
+      <ion-item-sliding *ngFor="let trans of transaccionesFiltradas">
+        
+        <ion-item lines="full">
+          <ion-icon 
+            [name]="getCategoriaIcono(trans.categoriaId)" 
+            [color]="trans.tipo === 'ingreso' ? 'success' : 'danger'" 
+            slot="start">
+          </ion-icon>
+          
+          <ion-label>
+            <h2>{{trans.descripcion}}</h2>
+            <p>{{trans.fecha | date:'dd/MM/yyyy'}}</p>
+            <p *ngIf="trans.metodoPago">{{trans.metodoPago}}</p>
+          </ion-label>
+          
+          <ion-note slot="end" [color]="trans.tipo === 'ingreso' ? 'success' : 'danger'">
+            {{trans.tipo === 'ingreso' ? '+' : '-'}}${{trans.monto | number:'1.0-0'}}
+          </ion-note>
+        </ion-item>
+
+        <!-- Opciones al deslizar -->
+        <ion-item-options side="end">
+          <ion-item-option color="primary" (click)="editarTransaccion(trans)">
+            <ion-icon name="create-outline"></ion-icon>
+            Editar
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="eliminarTransaccion(trans.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+    </ion-list>
+
+    <!-- Mensaje si no hay transacciones -->
+    <ion-card *ngIf="transaccionesFiltradas.length === 0">
+      <ion-card-content>
+        <div style="text-align: center; padding: 20px;">
+          <ion-icon name="receipt-outline" size="large" color="medium"></ion-icon>
+          <p style="color: gray; margin-top: 10px;">No hay transacciones registradas</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Botón flotante para agregar -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="irANuevaTransaccion()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </div>
+</ion-content>

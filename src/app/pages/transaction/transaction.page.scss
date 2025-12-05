@@ -1,0 +1,57 @@
+.transaction-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+ion-segment {
+  margin: 20px 0;
+  --background: var(--ion-color-light);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+ion-segment-button {
+  --indicator-color: var(--ion-color-primary);
+  --color-checked: white;
+  font-weight: 600;
+}
+
+.transaction-form {
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+.transaction-form ion-item {
+  margin-bottom: 15px;
+  --border-radius: 10px;
+  --padding-start: 15px;
+}
+
+ion-datetime-button {
+  width: 100%;
+  text-align: left;
+}
+
+.save-button {
+  margin-top: 30px;
+  --border-radius: 25px;
+  height: 50px;
+  font-weight: 600;
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.cancel-button {
+  margin-top: 10px;
+  --border-radius: 25px;
+  height: 50px;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

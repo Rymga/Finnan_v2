@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Error 404</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="not-found-container">
+    
+    <div class="error-content">
+      <!-- Ícono de error -->
+      <ion-icon name="alert-circle-outline" class="error-icon"></ion-icon>
+      
+      <!-- Código de error -->
+      <h1 class="error-code">404</h1>
+      
+      <!-- Mensaje -->
+      <h2>Página no encontrada</h2>
+      <p>Lo sentimos, la página que buscas no existe o fue movida.</p>
+      
+      <!-- Botón para volver -->
+      <ion-button 
+        (click)="goToHome()"
+        expand="block" 
+        shape="round" 
+        class="back-button">
+        <ion-icon slot="start" name="home-outline"></ion-icon>
+        Volver al Inicio
+      </ion-button>
+      
+      <!-- Botón alternativo al login -->
+      <ion-button 
+        (click)="goToLogin()"
+        expand="block" 
+        fill="outline"
+        shape="round" 
+        class="login-button">
+        <ion-icon slot="start" name="log-in-outline"></ion-icon>
+        Ir al Login
+      </ion-button>
+    </div>
+    
+  </div>
+</ion-content>
